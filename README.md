@@ -24,13 +24,19 @@ The project is organized as follows:
 ## How to Run
 
 1. Ensure you have all the required packages installed:
-pip install -r requirements.txt
+```bash
+   pip install -r requirements.txt
+```
 
-2. Train the model by running:
-python train_model.py
+3. Train the model by running:
+```bash
+   python train_model.py
+```
 
-3. After training, run the real-time prediction script:
-python real_time_prediction.py
+5. After training, run the real-time prediction script:
+```bash
+   python real_time_prediction.py
+```
 
 
 ## Requirements
