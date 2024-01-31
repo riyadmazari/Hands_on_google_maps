@@ -1,8 +1,8 @@
 import cv2
 import numpy as np
 from tensorflow.keras.models import load_model
-from utils.preprocessing import preprocess_frame
-from utils.data_preparation import prepare_data
+from preprocessing import preprocess_frame
+from data_preparation import prepare_data
 
 # Load your trained model
 model = load_model('models/gesture_model.h5')
