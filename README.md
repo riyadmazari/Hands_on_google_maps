@@ -24,22 +24,32 @@ The project is organized as follows:
 
 ## How to Run
 
-1. Augment the dataset images by running:
- ```bash
-python augment_data.py
-```
-
-2. Ensure you have all the required packages installed:
+1. Ensure you have all the required packages installed:
 ```bash
    pip install -r requirements.txt
 ```
 
-3. Train the model by running:
+2. Augment the dataset images by running:
+```bash
+   python augment_data.py
+```
+
+3. Preprocess the data by running:
+```bash
+   python preprocessing.py
+```
+
+4. Prepare the data by running:
+```bash
+   python data_preparation.py
+```
+
+5. Train the model by running:
 ```bash
    python train_model.py
 ```
 
-4. After training, run the real-time prediction script:
+6. After training, run the real-time prediction script:
 ```bash
    python real_time_prediction.py
 ```
