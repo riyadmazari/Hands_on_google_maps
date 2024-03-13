@@ -1,33 +1,26 @@
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Activation, Dropout
-from tensorflow.keras.optimizers import Adam
-from data_preparation import prepare_data
+from tensorflow.keras.layers import Dense, Dropout
+import numpy as np
+import os
 
+# Load the data
+data = np.load('/Users/riyadmazari/Desktop/Hands_on_google_maps/models/gesture_data.npz')
+X_train, X_test, y_train, y_test = data['X_train'], data['X_test'], data['y_train'], data['y_test']
 
-# Load and preprocess the data
-X_train, X_test, y_train, y_test, lb = prepare_data()
-
-# Build the model
+# Define the neural network architecture
 model = Sequential([
-    Conv2D(32, (3, 3), input_shape=(64, 64, 1)),
-    Activation('relu'),
-    MaxPooling2D(pool_size=(2, 2)),
-    Conv2D(32, (3, 3)),
-    Activation('relu'),
-    MaxPooling2D(pool_size=(2, 2)),
-    Flatten(),
-    Dense(64),
-    Activation('relu'),
+    Dense(units=128, activation='relu', input_shape=(X_train.shape[1],)),
     Dropout(0.5),
-    Dense(len(lb.classes_)),
-    Activation('softmax')
+    Dense(units=64, activation='relu'),
+    Dropout(0.5),
+    Dense(units=y_train.shape[1], activation='softmax')
 ])
 
 # Compile the model
-model.compile(optimizer=Adam(), loss='categorical_crossentropy', metrics=['accuracy'])
+model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
 # Train the model
-model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=20, batch_size=32)
+model.fit(X_train, y_train, epochs=100, validation_data=(X_test, y_test), batch_size=32)
 
 # Save the model
-model.save('models/gesture_model.h5')
+model.save('/Users/riyadmazari/Desktop/Hands_on_google_maps/models/gesture_model.h5')
