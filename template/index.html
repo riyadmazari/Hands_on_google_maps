@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Gesture-Controlled Google Maps</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&callback=initMap"></script>
+    <script>
+      let map;
+
+      function initMap() {
+        map = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: -34.397, lng: 150.644 },
+          zoom: 8,
+        });
+      }
+
+      function fetchNavigationCommand() {
+        $.getJSON("/navigate/<gesture>", function (data) {
+          switch (data.command) {
+            case "pan_up":
+              map.panBy(0, -100);
+              break;
+            case "pan_down":
+              map.panBy(0, 100);
+              break;
+            case "pan_left":
+              map.panBy(-100, 0);
+              break;
+            case "pan_right":
+              map.panBy(100, 0);
+              break;
+            case "zoom_in":
+              map.setZoom(map.getZoom() + 1);
+              break;
+            case "zoom_out":
+              map.setZoom(map.getZoom() - 1);
+              break;
+          }
+        });
+      }
+
+      $(document).ready(function () {
+        initMap();
+        setInterval(fetchNavigationCommand, 1000); // Poll every second
+      });
+    </script>
+  </head>
+  <body>
+    <div id="map" style="height: 400px; width: 100%"></div>
+  </body>
+</html>

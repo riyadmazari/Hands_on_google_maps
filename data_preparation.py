@@ -45,8 +45,8 @@ def prepare_data(dataset_dir, model_dir):
 
 if __name__ == "__main__":
     # Define paths
-    dataset_dir = '/Users/riyadmazari/Desktop/Hands_on_google_maps/gestures'
-    model_dir = '/Users/riyadmazari/Desktop/Hands_on_google_maps/models'
+    dataset_dir = '/Users/cristina/Hands_on_google_maps/gestures'
+    model_dir = '/Users/cristina/Hands_on_google_maps/models'
     # Prepare the data
     X_train, X_test, y_train, y_test = prepare_data(dataset_dir, model_dir)
     # Save the data for later use in training
