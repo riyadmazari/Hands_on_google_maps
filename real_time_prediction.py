@@ -4,6 +4,7 @@ from tensorflow.keras.models import load_model
 from preprocessing import preprocess_frame
 from data_preparation import prepare_data
 
+
 # Load your trained model
 model = load_model('models/gesture_model.h5')
 
