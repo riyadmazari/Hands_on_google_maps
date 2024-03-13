@@ -27,7 +27,7 @@ model = Sequential([
 model.compile(optimizer=Adam(), loss='categorical_crossentropy', metrics=['accuracy'])
 
 # Train the model
-model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=10, batch_size=32)
+model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=20, batch_size=32)
 
 # Save the model
 model.save('models/gesture_model.h5')
