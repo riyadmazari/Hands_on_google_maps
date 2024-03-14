@@ -80,6 +80,14 @@ python real_time_prediction.py
 ```bash
 python app.py
 ```
+## Methodology
+
+#### Model
+
+#### Pretrained Model
+In addition to training our own model, we explored alternative methods for cursor control. One approach involved leveraging the MediaPipe library to create a hand gesture recognition system. On a separate branch named "pretrained-model," we implemented a feature where users could move the cursor using their index finger. This allowed for a more intuitive and dynamic interaction with the interface. For further details on this implementation, feel free to explore the "pretrained-model" branch in our repository.
+
+
 ## Contributing
 
 To contribute to this project, please create a branch and submit a pull request for review.
