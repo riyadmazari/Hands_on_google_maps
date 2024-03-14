@@ -5,26 +5,26 @@ This project is designed to interpret hand gestures as commands for navigating G
 
 ## Project Structure
 
-    ├── gestures             # Training images for each gesture
+    ├── gestures             
     │   ├── Down
     │   ├── In
     │   ├── Left
     │   ├── Out
     │   ├── Right
     │   └── Up
-    ├── models               # Saved models and label binarizers
+    ├── models               
     │   ├── gesture_model.h5
     │   └── label_binarizer.pkl
-    ├── templates            # HTML templates for Flask app
+    ├── templates            
     │   └── index.html
-    ├── .env                 # Environment variables
-    ├── app.py               # Flask app main file
-    ├── data_preparation.py  # Script for data preparation
-    ├── preprocessing.py     # Script for preprocessing the data
-    ├── real_time_prediction.py # Real-time gesture recognition script
-    ├── requirements.txt     # Required Python packages
-    ├── train_model.py       # Script for model training
-    └── README.md            # README file
+    ├── .env
+    ├── app.py
+    ├── data_preparation.py
+    ├── preprocessing.py
+    ├── real_time_prediction.py
+    ├── requirements.txt
+    ├── train_model.py
+    └── README.md            
 
 ## File Descriptions
 
