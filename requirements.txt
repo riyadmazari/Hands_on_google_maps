@@ -1,4 +1,5 @@
-numpy
+mediapipe==0.9.3.0
 opencv-python
-scikit-learn
-tensorflow
+pyautogui
+Flask 
+Flask-SocketIO
