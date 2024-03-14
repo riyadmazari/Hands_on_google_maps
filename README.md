@@ -4,12 +4,13 @@
 This project is designed to interpret hand gestures as commands for navigating Google Maps. It utilizes a Convolutional Neural Network (CNN) to recognize hand gestures from a webcam feed.
 
 ## Demo
+The demo might take a few seconds to load...
 
 ![Demo Video](/demo/demo.gif)
 
 ## Project Structure
 
-    ├── gestures             
+    ├── gestures            
     │   ├── Down
     │   ├── In
     │   ├── Left
