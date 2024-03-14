@@ -46,7 +46,7 @@ pip install -r requirements.txt
 
 2. Configure the application:
 
-Set your Google Maps API key in the .env file:
+Set your Google Maps API key in the `.env` file:
 ```bash
 GOOGLE_MAPS_API_KEY=your_api_key_here
 ```
