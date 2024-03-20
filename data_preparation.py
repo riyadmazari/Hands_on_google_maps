@@ -8,18 +8,18 @@ import pickle
 
 mp_hands = mp.solutions.hands.Hands(static_image_mode=True, max_num_hands=1, min_detection_confidence=0.5)
 
-def extract_landmarks(image):
+def extract_landmarks(image): 
     image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-    result = mp_hands.process(image_rgb)
+    result = mp.hands.process(image_rgb)
     if result.multi_hand_landmarks:
         landmarks = [[lm.x, lm.y, lm.z] for lm in result.multi_hand_landmarks[0].landmark]
         return np.array(landmarks).flatten()
-    return np.zeros(21 * 3)  # If no hand is detected, return an array of zeros.
+    return np.zeros(21 * 3) # If no hand is detected, return an array of zeros. 
 
-def prepare_data(dataset_dir, model_dir):
+def prepare_data(dataset_dir, model_dir): 
     data = []
     labels = []
-
+    
     for gesture_name in os.listdir(dataset_dir):
         gesture_folder = os.path.join(dataset_dir, gesture_name)
         for img_file in os.listdir(gesture_folder):
@@ -30,23 +30,24 @@ def prepare_data(dataset_dir, model_dir):
                 if landmarks.size > 0:
                     data.append(landmarks)
                     labels.append(gesture_name)
-
-    mp_hands.close()
     
+    mp_hands.close()               
+    
+    # Convert the data and labels to numpy arrays
     lb = LabelBinarizer()
     labels_encoded = lb.fit_transform(labels)
     X_train, X_test, y_train, y_test = train_test_split(np.array(data), labels_encoded, test_size=0.2, random_state=42)
-    
+        
     # Save the label binarizer and the data
     with open(os.path.join(model_dir, 'label_binarizer.pkl'), 'wb') as f:
         pickle.dump(lb, f)
-
+    
     return X_train, X_test, y_train, y_test
-
-if __name__ == "__main__":
+ 
+if __name__ == "__main__": 
     # Define paths
-    dataset_dir = '/Users/riyadmazari/Desktop/Hands_on_google_maps/gestures'
-    model_dir = '/Users/riyadmazari/Desktop/Hands_on_google_maps/models'
+    dataset_dir = '/Users/anita/Documents/IE 3RD/Computer Vision/Hands_on_google_maps/gestures'
+    model_dir = '/Users/anita/Documents/IE 3RD/Computer Vision/Hands_on_google_maps/models'
     # Prepare the data
     X_train, X_test, y_train, y_test = prepare_data(dataset_dir, model_dir)
     # Save the data for later use in training
