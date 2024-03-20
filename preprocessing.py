@@ -3,11 +3,12 @@ import cv2
 import mediapipe as mp
 import os
 
+
 def annotate_and_save_images(input_folder, output_folder, img_size=(64, 64)):
     mp_hands = mp.solutions.hands
     hands = mp_hands.Hands(static_image_mode=True, max_num_hands=1, min_detection_confidence=0.5)
-    mp_drawing = mp.solutions.drawing_utils
-
+    mp_drawing = mp.solutions.drawing_utils 
+    
     for gesture in os.listdir(input_folder):
         gesture_path = os.path.join(input_folder, gesture)
         save_path = os.path.join(output_folder, gesture)
