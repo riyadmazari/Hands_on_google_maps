@@ -48,7 +48,9 @@ if __name__ == "__main__":
     # Define paths
     dataset_dir = '/Users/anita/Documents/IE 3RD/Computer Vision/Hands_on_google_maps/gestures'
     model_dir = '/Users/anita/Documents/IE 3RD/Computer Vision/Hands_on_google_maps/models'
-    # Prepare the data
+    
+    # Prepare the data 
     X_train, X_test, y_train, y_test = prepare_data(dataset_dir, model_dir)
-    # Save the data for later use in training
+    # Save the data for later use 
     np.savez_compressed(os.path.join(model_dir, 'gesture_data.npz'), X_train=X_train, X_test=X_test, y_train=y_train, y_test=y_test)
+  
