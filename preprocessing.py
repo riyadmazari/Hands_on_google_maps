@@ -4,7 +4,6 @@ import mediapipe as mp
 import os
 
 
-
 def annotate_and_save_images(input_folder, output_folder, img_size=(64, 64)):
     mp_hands = mp.solutions.hands
     hands = mp_hands.Hands(static_image_mode=True, max_num_hands=1, min_detection_confidence=0.5)
