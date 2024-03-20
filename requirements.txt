@@ -1,5 +1,8 @@
+Flask
 numpy
 opencv-python
-scikit-learn
 tensorflow
-python-dotenv
+mediapipe
+scikit-learn
+matplotlib
+Pillow

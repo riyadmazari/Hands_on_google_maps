@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Gesture-Controlled Google Maps</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&callback=initMap" async defer></script>
+    <script>
+      let map;
+      let gestureCooldown = false;
+
+      function initMap() {
+        map = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: -34.397, lng: 150.644 },
+          zoom: 8,
+        });
+      }
+
+      function fetchGestureAndUpdateMap() {
+        fetch('/get_gesture')
+          .then(response => response.json())
+          .then(data => {
+            const gesture = data.gesture;
+            if (gesture !== "No gesture") {
+              if (!gestureCooldown) {
+                updateMap(gesture);
+                gestureCooldown = true;
+                setTimeout(() => { gestureCooldown = false; }, 500);
+              }
+            }
+          })
+          .catch(error => console.error('Error fetching gesture:', error));
+      }
+
+      function updateMap(gesture) {
+        switch (gesture) {
+          case "Up":
+            map.panBy(0, -100);
+            break;
+          case "Down":
+            map.panBy(0, 100);
+            break;
+          case "Right":
+            map.panBy(-100, 0);
+            break;
+          case "Left":
+            map.panBy(100, 0);
+            break;
+          case "In":
+            if (map.getZoom() < 21) map.setZoom(map.getZoom() + 1);
+            break;
+          case "Out":
+            if (map.getZoom() > 0) map.setZoom(map.getZoom() - 1);
+            break;
+        }
+      }
+
+      $(document).ready(function() {
+        initMap();
+        setInterval(fetchGestureAndUpdateMap, 100); // Poll every 100 milliseconds for new gestures
+      });
+    </script>
+  </head>
+  <body>
+    <div id="map" style="height: 100vh; width: 100%;"></div>
+  </body>
+</html>
