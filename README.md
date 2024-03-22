@@ -82,10 +82,34 @@ python app.py
 ```
 ## Methodology
 
-#### Model
+### Model Description for Hand Gesture Recognition
 
-#### Pretrained Model
-In addition to training our own model, we explored alternative methods for cursor control. One approach involved leveraging the MediaPipe library to create a hand gesture recognition system. On a separate branch named "pretrained-model," we implemented a feature where users could move the cursor using their index finger. This allowed for a more intuitive and dynamic interaction with the interface. For further details on this implementation, feel free to explore the "pretrained-model" branch in our repository.
+The hand gesture recognition model is a Convolutional Neural Network (CNN) designed to classify images of hand gestures into pre-defined categories. The model is built using TensorFlow and Keras libraries, which are popular for deep learning tasks.
+
+#### Architecture Overview:
+Our CNN consists of several layers that process the input images in a hierarchical manner to understand and classify hand gestures:
+
+`Convolutional Layers`: These are the core building blocks of our CNN. They apply a number of filters to the input image to create a feature map. This process captures the local dependencies in the image, such as edges, textures, and patterns associated with different hand gestures.
+
+`Activation Functions`: We use the ReLU (Rectified Linear Unit) activation function in our convolutional layers. ReLU introduces non-linearity to the model, allowing it to learn more complex patterns.
+
+`Pooling Layers`: These layers reduce the spatial dimensions (width and height) of the input volume for the next convolutional layer. It helps in reducing the computational load, memory usage, and also helps with making the detection of features invariant to scale and orientation.
+
+`Flatten Layer`: After several convolutional and pooling layers, the high-level reasoning in the neural network is done via fully connected layers. A flatten layer is used to convert the 2D feature maps into a 1D feature vector.
+
+`Fully Connected (Dense) Layers`: These layers connect every neuron in one layer to every neuron in the next layer. It is in these layers that the classification process occurs, with the final layer outputting the probability distribution over the classes.
+
+`Dropout Layers`: We use dropout regularization to reduce overfitting. During training, this layer will randomly drop out (i.e., set to zero) a number of output features of the layer with a given probability.
+
+`Output Layer`: The last dense layer outputs the probabilities of the input being in each class. We use the softmax activation function in this layer to convert raw scores into probabilities that sum up to one.
+
+#### Training Process:
+The model was trained on a dataset consisting of images labeled with the corresponding hand gesture. These images were preprocessed to a uniform size and normalized to have pixel values between 0 and 1. To enhance the model's ability to generalize, we augmented the dataset by applying random transformations like rotations, translations, and flips.
+
+A multi-class cross-entropy loss function was used to quantify how well the model predicted the actual classifications. We used an Adam optimizer for its adaptive learning rate capabilities, which makes it well-suited for deep learning applications.
+
+To prevent overfitting, we monitored the model's performance on a validation set and implemented early stopping in our training process. This halts the training if the validation accuracy does not improve for a set number of epochs.
+
 
 
 ## Contributing
