@@ -46,8 +46,8 @@ def prepare_data(dataset_dir, model_dir):
  
 if __name__ == "__main__": 
     # Define paths
-    dataset_dir = '/Users/anita/Documents/IE 3RD/Computer Vision/Hands_on_google_maps/gestures'
-    model_dir = '/Users/anita/Documents/IE 3RD/Computer Vision/Hands_on_google_maps/models'
+    dataset_dir = 'gestures'
+    model_dir = 'models'
     
     # Prepare the data 
     X_train, X_test, y_train, y_test = prepare_data(dataset_dir, model_dir)
